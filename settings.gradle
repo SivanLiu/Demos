@@ -1,0 +1,2 @@
+include ':BuglyApp'
+rootProject.name = "Demos"
