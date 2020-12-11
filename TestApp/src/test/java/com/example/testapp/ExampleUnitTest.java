@@ -1,7 +1,4 @@
-package com.example.buglyapplication;
-
-import org.junit.Assert;
-import org.junit.Test;
+package com.example.testapp;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -10,8 +7,7 @@ import org.junit.Test;
  */
 public class ExampleUnitTest {
 
-    @Test
-    public void addition_isCorrect() {
-        Assert.assertEquals(4, 2 + 2);
+    public static void main(String[] args) {
+        System.out.println(EncryptUtil.md5("18867105717"));
     }
 }
