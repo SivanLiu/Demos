@@ -3,4 +3,5 @@ include ':KotlinDemo'
 include ':EventBusApp'
 include ':TestApp'
 include ':BuglyApp'
+include ':FragmentDemo'
 rootProject.name = "Demos"
