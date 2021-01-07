@@ -1,14 +1,16 @@
 package com.example.fragmentdemo;
 
+import com.google.android.material.tabs.TabLayout;
+
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        viewPager.setCurrentItem(3);
+        viewPager.setCurrentItem(0);
 //        viewPager.post(new Runnable() {
 //            @Override
 //            public void run() {
