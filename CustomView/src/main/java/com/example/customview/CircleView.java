@@ -30,6 +30,22 @@ public class CircleView extends View {
 
         width = resolveSize(width, widthMeasureSpec);
         hight = resolveSize(hight, heightMeasureSpec);
+
+//        int specWithMode = MeasureSpec.getMode(widthMeasureSpec);
+//        int specWidthSize = MeasureSpec.getSize(widthMeasureSpec);
+//        switch (specWithMode){
+//            case MeasureSpec.EXACTLY:
+//                width = specWidthSize;
+//                break;
+//            case MeasureSpec.AT_MOST:
+//                if(width>specWidthSize){
+//                    width = specWidthSize;
+//                }
+//                break;
+//            default:
+//                break;
+//        }
+
         setMeasuredDimension(width, hight);
     }
 
