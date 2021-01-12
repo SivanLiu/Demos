@@ -50,12 +50,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         viewPager.setCurrentItem(0);
-//        viewPager.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                viewPager.
-//            }
-//        })
         tableLayout.setupWithViewPager(viewPager);
 
         tableLayout.getTabAt(0).setText("AFragment");

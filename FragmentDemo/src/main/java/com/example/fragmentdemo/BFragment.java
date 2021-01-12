@@ -13,7 +13,6 @@ public class BFragment extends BaseFragment {
     @Override
     protected int getLayoutResourceId() {
         return R.layout.b_fragment_layout;
-
     }
 
     @Override

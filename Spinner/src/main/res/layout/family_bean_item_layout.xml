@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="216px"
+        android:layout_height="87px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5px">
+
+    <ImageView
+            android:id="@+id/iv_family_bean_icon"
+            android:layout_width="48px"
+            android:layout_height="48px"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10px"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/img_header_man" />
+
+    <TextView
+            android:id="@+id/tv_family_member_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12px"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxEms="4"
+            android:maxLines="1"
+            android:text="刘小芸"
+            android:textColor="@color/black"
+            android:textSize="36px" />
+</LinearLayout>

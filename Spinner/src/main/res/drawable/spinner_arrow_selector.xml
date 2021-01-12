@@ -1,0 +1,31 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingDefaultResource">
+    <item android:state_pressed="true">
+        <layer-list>
+            <item>
+                <shape>
+                    <corners android:topLeftRadius="5px" android:topRightRadius="5px" />
+                    <solid android:color="" />
+                    <padding android:right="5px" />
+                </shape>
+            </item>
+            <item>
+                <bitmap android:gravity="center_vertical|right" android:src="@drawable/spread_grey" />
+            </item>
+        </layer-list>
+    </item>
+
+    <item android:state_pressed="false">
+        <layer-list>
+            <item>
+                <shape>
+                    <corners android:radius="5px" />
+                    <solid android:color="@color/white" />
+                    <padding android:right="5px" />
+                </shape>
+            </item>
+            <item>
+                <bitmap android:gravity="center_vertical|right" android:src="@drawable/spread_grey" />
+            </item>
+        </layer-list>
+    </item>
+</selector>

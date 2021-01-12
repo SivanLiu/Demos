@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
 import kotlin.Unit;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "onClick: ");
             }
         });
+
 
         RxView.clicks(btLogin).throttleFirst(5, TimeUnit.SECONDS)
                 .subscribe(new Observer<Unit>() {
