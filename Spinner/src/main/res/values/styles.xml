@@ -1,0 +1,5 @@
+<resources>
+    <style name="spinner_style" parent="Base.Widget.AppCompat.Spinner">
+        <item name="android:background">@drawable/spinner_arrow_selector</item>
+    </style>
+</resources>

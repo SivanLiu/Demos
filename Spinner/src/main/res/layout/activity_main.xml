@@ -1,70 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@mipmap/bg"
-        android:orientation="vertical"
-        tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <Spinner
-            android:id="@+id/spinner_choose_family"
-            android:layout_width="wrap_content"
-            android:layout_height="87px"
-            android:layout_gravity="center_horizontal"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:dropDownWidth="wrap_content"
-            android:background="@drawable/spinner_arrow_selector"
-            android:dropDownVerticalOffset="68px"
-            android:popupBackground="#00000000"
-            android:gravity="center"
-            android:spinnerMode="dropdown" />
+        android:id="@+id/spinner_choose_family"
+        style="@style/spinner_style"
+        android:layout_width="wrap_content"
+        android:layout_height="87px"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_horizontal"
+        android:dropDownWidth="wrap_content"
+        android:dropDownVerticalOffset="87px"
+        android:gravity="center"
+        android:paddingRight="75px"
+        android:popupBackground="#00000000"
+        android:spinnerMode="dropdown" />
 
     <RelativeLayout
-            android:id="@+id/ll_view"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:background="@drawable/spinner_arrow_selector"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_vertical"
-            android:visibility="visible">
+        android:id="@+id/ll_view"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/spinner_arrow_selector"
+        android:gravity="center_vertical"
+        android:visibility="gone">
 
         <ImageView
-                android:id="@+id/iv_images"
-                android:layout_width="48px"
-                android:layout_height="48px"
-                android:layout_alignParentLeft="true"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10px"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/img_header_man" />
+            android:id="@+id/iv_images"
+            android:layout_width="40px"
+            android:layout_height="36px"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10px"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/img_header_man" />
 
         <TextView
-                android:id="@+id/tv_family_member_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="12px"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:maxEms="4"
-                android:maxLines="1"
-                android:text="刘小芸"
-                android:textColor="@color/black"
-                android:textSize="36px" />
+            android:id="@+id/tv_family_member_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="12px"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxEms="4"
+            android:maxLines="1"
+            android:text="刘小芸"
+            android:textColor="@color/black"
+            android:textSize="36px" />
 
         <ImageView
-                android:id="@+id/iv_drop"
-                android:layout_width="48px"
-                android:layout_height="48px"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10px"
-                android:layout_marginRight="5dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/spread_grey" />
+            android:id="@+id/iv_drop"
+            android:layout_width="48px"
+            android:layout_height="48px"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/spread_grey" />
     </RelativeLayout>
 </LinearLayout>

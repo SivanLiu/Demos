@@ -18,6 +18,7 @@ import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         mSpinner = findViewById(R.id.spinner_choose_family);
         ll_view = findViewById(R.id.ll_view);
         recyclerView = findViewById(R.id.recyclerView);
+
 
 
 
@@ -72,13 +74,15 @@ public class MainActivity extends AppCompatActivity {
         spinnerBeans.add(spinnerBean3);
         spinnerBeans.add(spinnerBean4);
         spinnerAdapter = new SpinnerAdapter(this, mSpinner, spinnerBeans);
+        ArrayAdapter<SpinnerBean> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
+//        arrayAdapter.addAll(spinnerBeans);
         mSpinner.setAdapter(spinnerAdapter);
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.e("sss", "position = " + position);
 //                view.setBackgroundColor(Color.TRANSPARENT);
-                spinnerAdapter.select(position);
+//                spinnerAdapter.select(position);
 
             }
 

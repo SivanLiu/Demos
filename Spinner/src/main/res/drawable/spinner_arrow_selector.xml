@@ -1,5 +1,5 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" android:state_hovered="true" android:state_window_focused="true" android:state_focused="true" android:state_selected="true" android:state_active="true" android:state_activated="true">
+    <item android:state_activated="true" android:state_active="true" android:state_focused="true" android:state_hovered="true" android:state_pressed="true" android:state_selected="true" android:state_window_focused="true">
         <layer-list>
             <item>
                 <shape>
@@ -20,7 +20,7 @@
                 <shape>
                     <stroke android:width="1px" android:color="@color/white" />
                     <solid android:color="#00000000" />
-                    <padding android:right="5px"/>
+                    <padding android:right="5px" />
                 </shape>
             </item>
             <item>
