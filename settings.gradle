@@ -1,3 +1,4 @@
+include ':MpChart'
 include ':Spinner'
 include ':CustomView'
 include ':RxAndroid'

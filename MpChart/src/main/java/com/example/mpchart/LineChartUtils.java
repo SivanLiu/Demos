@@ -1,0 +1,187 @@
+package com.example.mpchart;
+
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+
+import android.graphics.Color;
+import android.util.Log;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class LineChartUtils {
+
+    public static final String[] weekDays = {"周一", "周二", "周三", "周四", "周五", "周六", "周日"};
+
+    public static void initLineChart(LineChart lineChart, ValueFormatter valueFormatter) {
+        lineChart.setDescription(null);
+        lineChart.setDragEnabled(false);
+        lineChart.setScaleEnabled(false);
+        lineChart.getLegend().setEnabled(false);
+        lineChart.getLegend().setForm(Legend.LegendForm.LINE);
+
+        lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        lineChart.getXAxis().setDrawLabels(true);
+        lineChart.getXAxis().setDrawAxisLine(true);
+        lineChart.getXAxis().setDrawGridLines(false);
+        lineChart.getXAxis().setTextSize(30f);
+        lineChart.getXAxis().setTextColor(Color.parseColor("#AFAFAF"));
+        lineChart.getXAxis().setAxisLineWidth(2);
+        lineChart.getXAxis().setAxisLineColor(Color.parseColor("#1A393939"));
+        lineChart.getXAxis().setGranularity(1f);
+//        lineChart.setExtraOffsets(0, 5, 0, 10);
+        lineChart.setExtraBottomOffset(5);
+//        lineChart.getAxisLeft().setSpaceBottom(0);
+        lineChart.getXAxis().setAvoidFirstLastClipping(true);
+
+        lineChart.getAxisRight().setEnabled(false);
+
+        lineChart.getAxisLeft().setEnabled(true);
+        lineChart.getAxisLeft().setDrawGridLines(false);
+        lineChart.getAxisLeft().setTextColor(Color.TRANSPARENT);
+        lineChart.getAxisLeft().setDrawLabels(false);
+        lineChart.getAxisLeft().setAxisLineColor(Color.TRANSPARENT);
+        lineChart.getXAxis().setValueFormatter(valueFormatter);
+    }
+
+    public static void initLineChart(LineChart lineChart) {
+        lineChart.setDescription(null);
+        lineChart.setDragEnabled(false);
+        lineChart.setScaleEnabled(false);
+        lineChart.getLegend().setEnabled(false);
+        lineChart.getLegend().setForm(Legend.LegendForm.LINE);
+
+        lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        lineChart.getXAxis().setDrawLabels(true);
+        lineChart.getXAxis().setDrawAxisLine(true);
+        lineChart.getXAxis().setDrawGridLines(false);
+        lineChart.getXAxis().setTextSize(30f);
+        lineChart.getXAxis().setTextColor(Color.parseColor("#AFAFAF"));
+        lineChart.getXAxis().setAxisLineWidth(2);
+        lineChart.getXAxis().setAxisLineColor(Color.parseColor("#1A393939"));
+        lineChart.getXAxis().setGranularity(1f);
+//        lineChart.setExtraOffsets(0, 5, 0, 10);
+        lineChart.setExtraBottomOffset(5);
+//        lineChart.getAxisLeft().setSpaceBottom(0);
+        lineChart.getXAxis().setAvoidFirstLastClipping(true);
+
+        lineChart.getAxisRight().setEnabled(false);
+
+        lineChart.getAxisLeft().setEnabled(true);
+        lineChart.getAxisLeft().setDrawGridLines(false);
+        lineChart.getAxisLeft().setTextColor(Color.TRANSPARENT);
+        lineChart.getAxisLeft().setDrawLabels(false);
+        lineChart.getAxisLeft().setAxisLineColor(Color.TRANSPARENT);
+    }
+
+    /**
+     * 1/1 1/5 1/10 1/15 1/20 1/25
+     */
+    public static ValueFormatter getMonthValueForMatter(String month) {
+        ValueFormatter valueFormatter = new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                String latestValue;
+                if (value == 0) {
+                    latestValue = getMonth(month) + "/" + (int) (value + 1);
+                } else if ((value + 1) % 5 == 0) {
+                    latestValue = getMonth(month) + "/" + (int) (value + 1);
+                } else {
+                    latestValue = "";
+                }
+//                logger.debug("getFormattedValue value = {}, lastValue = {}", value, latestValue);
+                return latestValue;
+            }
+        };
+        return valueFormatter;
+    }
+
+    public static ValueFormatter getWeekValueForMatter() {
+        ValueFormatter valueFormatter = new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                Log.e("sss", "getDayValueForMatter value = " + value);
+                if (value > 6) {
+                    return "";
+                }
+                return weekDays[(int) value];
+            }
+        };
+
+        return valueFormatter;
+    }
+
+    /**
+     * 按照分钟计算：24*60=1440
+     */
+    public static ValueFormatter getDayValueForMatter() {
+        ValueFormatter valueFormatter = new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                String latestValue;
+                if (value == 0) {
+                    latestValue = "00:00";
+                } else if (value % 240 == 0) {
+                    latestValue = "04:00";
+                } else if (value % 480 == 0) {
+                    latestValue = "08:00";
+                } else if (value % 720 == 0) {
+                    latestValue = "12:00";
+                } else if (value % 960 == 0) {
+                    latestValue = "16:00";
+                } else if (value % 1200 == 0) {
+                    latestValue = "20:00";
+                } else if (value % 1440 == 0) {
+                    latestValue = "24:00";
+                } else {
+                    latestValue = "";
+                }
+//                logger.debug("getFormattedValue value = {}, lastValue = {}", value, latestValue);
+                Log.e("sss", "getDayValueForMatter latestValue = " + latestValue + " " + value);
+                return latestValue;
+
+            }
+        };
+        return valueFormatter;
+    }
+
+    public static void setLineChartLimit(LineChart lineChart, float[] limits) {
+        for (int i = 0; i < limits.length; i++) {
+            LimitLine limitLine;
+            if (i == limits.length - 1) {
+                limitLine = new LimitLine(limits[i], "");
+            } else {
+                limitLine = new LimitLine(limits[i], String.valueOf((int) limits[i]));
+            }
+
+            lineChart.getAxisLeft().setDrawLimitLinesBehindData(false);
+
+            limitLine.setLineWidth(2f);
+            limitLine.enableDashedLine(10f, 3f, 0f);
+            limitLine.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
+            limitLine.setTextSize(20f);
+            limitLine.setLineColor(Color.parseColor("#1A393939"));
+            limitLine.setTextColor(Color.parseColor("#AFAFAF"));
+            lineChart.getAxisLeft().addLimitLine(limitLine);
+        }
+    }
+
+    public static String getMonth(String time) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+        Date date1 = null;
+        try {
+            date1 = format.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String result = new SimpleDateFormat("MM").format(date1);
+        if (Integer.parseInt(result) < 10) {
+            return result.substring(1);
+        }
+        return result;
+    }
+}
