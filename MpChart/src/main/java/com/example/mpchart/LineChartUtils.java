@@ -1,13 +1,14 @@
 package com.example.mpchart;
 
+import android.graphics.Color;
+import android.util.Log;
+
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
-
-import android.graphics.Color;
-import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,7 +29,7 @@ public class LineChartUtils {
         lineChart.getXAxis().setDrawLabels(true);
         lineChart.getXAxis().setDrawAxisLine(true);
         lineChart.getXAxis().setDrawGridLines(false);
-        lineChart.getXAxis().setTextSize(30f);
+        lineChart.getXAxis().setTextSize(15);
         lineChart.getXAxis().setTextColor(Color.parseColor("#AFAFAF"));
         lineChart.getXAxis().setAxisLineWidth(2);
         lineChart.getXAxis().setAxisLineColor(Color.parseColor("#1A393939"));
@@ -85,15 +86,17 @@ public class LineChartUtils {
         ValueFormatter valueFormatter = new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
+                Log.e("sss", "getMonthValueForMatter value = " + value);
                 String latestValue;
                 if (value == 0) {
                     latestValue = getMonth(month) + "/" + (int) (value + 1);
                 } else if ((value + 1) % 5 == 0) {
                     latestValue = getMonth(month) + "/" + (int) (value + 1);
                 } else {
-                    latestValue = "";
+//                    return String.valueOf((int)value);
+                    return "";
                 }
-//                logger.debug("getFormattedValue value = {}, lastValue = {}", value, latestValue);
+//                return String.valueOf((int)value);
                 return latestValue;
             }
         };
@@ -116,32 +119,33 @@ public class LineChartUtils {
     }
 
     /**
-     * 按照分钟计算：24*60=1440
+     * 按照分钟计算：24*60*60*1000=86400000 毫秒
      */
     public static ValueFormatter getDayValueForMatter() {
         ValueFormatter valueFormatter = new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
+                Log.e("ssss", "every value = "+value);
                 String latestValue;
                 if (value == 0) {
                     latestValue = "00:00";
-                } else if (value % 240 == 0) {
+                } else if (value == 240) {
                     latestValue = "04:00";
-                } else if (value % 480 == 0) {
+                } else if (value == 480) {
                     latestValue = "08:00";
-                } else if (value % 720 == 0) {
+                } else if (value == 720) {
                     latestValue = "12:00";
-                } else if (value % 960 == 0) {
+                } else if (value == 960) {
                     latestValue = "16:00";
-                } else if (value % 1200 == 0) {
+                } else if (value == 1200) {
                     latestValue = "20:00";
-                } else if (value % 1440 == 0) {
+                } else if (value == 1440) {
                     latestValue = "24:00";
                 } else {
                     latestValue = "";
                 }
-//                logger.debug("getFormattedValue value = {}, lastValue = {}", value, latestValue);
                 Log.e("sss", "getDayValueForMatter latestValue = " + latestValue + " " + value);
+//                logger.debug("getFormattedValue value = {}, lastValue = {}", value, latestValue);
                 return latestValue;
 
             }
@@ -168,6 +172,46 @@ public class LineChartUtils {
             limitLine.setTextColor(Color.parseColor("#AFAFAF"));
             lineChart.getAxisLeft().addLimitLine(limitLine);
         }
+    }
+
+    public static void initEmptyLineDataSet(LineDataSet lineDataSet) {
+        lineDataSet.setDrawFilled(false);
+        lineDataSet.setDrawValues(false);
+        //设置渐变线
+        lineDataSet.setHighlightEnabled(false);
+        lineDataSet.setDrawFilled(false);
+        lineDataSet.setDrawCircleHole(false);
+        lineDataSet.setDrawCircles(false);
+        lineDataSet.setColor(Color.TRANSPARENT);
+        lineDataSet.setLineWidth(0f);
+        lineDataSet.setMode(LineDataSet.Mode.LINEAR);
+        //设置数据点圆是否为空心,false为实心
+        lineDataSet.setDrawCircleHole(true);
+    }
+
+    //设置心率折线图
+    public static void initHeartRateLineDataSet(LineDataSet lineDataSet, int color) {
+        //设置选中渐变线
+        lineDataSet.setHighlightEnabled(true);
+        lineDataSet.setHighlightLineWidth(2f);
+        lineDataSet.setHighLightColor(Color.parseColor("#28C3F2"));
+        lineDataSet.setDrawHorizontalHighlightIndicator(false);
+        lineDataSet.setDrawVerticalHighlightIndicator(true);
+
+        // 显示的圆形大小
+        lineDataSet.setCircleRadius(2f);
+        lineDataSet.setDrawFilled(false);
+        lineDataSet.setDrawValues(true);
+        lineDataSet.setValueTextSize(5f);
+        lineDataSet.setColor(color);
+        lineDataSet.setCircleColor(color);
+        lineDataSet.setLineWidth(4f);
+        lineDataSet.setCubicIntensity(0.3f);
+        lineDataSet.setCircleRadius(1f);
+        lineDataSet.setDrawCircleHole(true);
+        lineDataSet.setValueTextSize(30f);
+        //设置折线图填充,设置其他类型不显示连线？
+        lineDataSet.setMode(LineDataSet.Mode.LINEAR);
     }
 
     public static String getMonth(String time) {
