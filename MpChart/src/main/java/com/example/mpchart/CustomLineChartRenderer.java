@@ -36,7 +36,20 @@ public class CustomLineChartRenderer extends LineChartRenderer {
         Transformer trans = mChart.getTransformer(dataSet.getAxisDependency());
         List<Entry> entries = dataSet.getValues();
         Log.e("sss", "drawValues: 1111 " + entries);
-        Collections.sort(entries, new Comparator<Entry>() {
+//        Collections.sort(entries, new Comparator<Entry>() {
+//            @Override
+//            public int compare(Entry entry, Entry t1) {
+//                return (int) (entry.getY() - t1.getY());
+//            }
+//        });
+        Entry max = Collections.max(entries, new Comparator<Entry>() {
+            @Override
+            public int compare(Entry entry, Entry t1) {
+                return (int) (t1.getY() - entry.getY());
+            }
+        });
+
+        Entry min = Collections.max(entries, new Comparator<Entry>() {
             @Override
             public int compare(Entry entry, Entry t1) {
                 return (int) (entry.getY() - t1.getY());
@@ -44,8 +57,8 @@ public class CustomLineChartRenderer extends LineChartRenderer {
         });
         Log.e("sss", "drawValues: 2222 " + entries);
 
-        Entry minEntry = entries.get(0);
-        Entry maxEntry = entries.get(entries.size()-1);
+        Entry minEntry = max;
+        Entry maxEntry = min;
 
         Log.e("sss", "drawValues: 333 " + maxEntry.toString() + " minEntry = " + minEntry.toString());
         MPPointD minPointD = trans.getPixelForValues(minEntry.getX(), minEntry.getY());

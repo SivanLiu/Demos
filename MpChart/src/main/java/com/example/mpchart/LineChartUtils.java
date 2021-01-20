@@ -45,7 +45,7 @@ public class LineChartUtils {
         lineChart.getAxisLeft().setTextColor(Color.TRANSPARENT);
         lineChart.getAxisLeft().setDrawLabels(false);
         lineChart.getAxisLeft().setAxisLineColor(Color.TRANSPARENT);
-        lineChart.getXAxis().setValueFormatter(valueFormatter);
+//        lineChart.getXAxis().setValueFormatter(valueFormatter);
     }
 
     public static void initLineChart(LineChart lineChart) {
