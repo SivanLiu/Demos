@@ -23,7 +23,6 @@ public class LineChartUtils {
         lineChart.setDragEnabled(false);
         lineChart.setScaleEnabled(false);
         lineChart.getLegend().setEnabled(false);
-        lineChart.getLegend().setForm(Legend.LegendForm.LINE);
 
         lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         lineChart.getXAxis().setDrawLabels(true);
@@ -33,7 +32,7 @@ public class LineChartUtils {
         lineChart.getXAxis().setTextColor(Color.parseColor("#AFAFAF"));
         lineChart.getXAxis().setAxisLineWidth(2);
         lineChart.getXAxis().setAxisLineColor(Color.parseColor("#1A393939"));
-        lineChart.getXAxis().setGranularity(1f);
+//        lineChart.getXAxis().setGranularity(1f);
 //        lineChart.setExtraOffsets(0, 5, 0, 10);
         lineChart.setExtraBottomOffset(5);
 //        lineChart.getAxisLeft().setSpaceBottom(0);
@@ -190,7 +189,7 @@ public class LineChartUtils {
     }
 
     //设置心率折线图
-    public static void initHeartRateLineDataSet(LineDataSet lineDataSet, int color) {
+    public static void initHeartRateLineDataSet(LineDataSet lineDataSet) {
         //设置选中渐变线
         lineDataSet.setHighlightEnabled(true);
         lineDataSet.setHighlightLineWidth(2f);
@@ -201,14 +200,17 @@ public class LineChartUtils {
         // 显示的圆形大小
         lineDataSet.setCircleRadius(2f);
         lineDataSet.setDrawFilled(false);
-        lineDataSet.setDrawValues(true);
+        lineDataSet.setDrawValues(false);
         lineDataSet.setValueTextSize(5f);
-        lineDataSet.setColor(color);
-        lineDataSet.setCircleColor(color);
+//        lineDataSet.setColor(color);
+//        lineDataSet.setColors(Color.RED, Color.BLACK, Color.BLACK);
         lineDataSet.setLineWidth(4f);
         lineDataSet.setCubicIntensity(0.3f);
-        lineDataSet.setCircleRadius(1f);
+        lineDataSet.setCircleRadius(4f);
+        lineDataSet.setDrawCircles(true);
         lineDataSet.setDrawCircleHole(true);
+        lineDataSet.setCircleHoleColor(Color.BLUE);
+        lineDataSet.setCircleColors(Color.RED, Color.BLUE, Color.GREEN);
         lineDataSet.setValueTextSize(30f);
         //设置折线图填充,设置其他类型不显示连线？
         lineDataSet.setMode(LineDataSet.Mode.LINEAR);
