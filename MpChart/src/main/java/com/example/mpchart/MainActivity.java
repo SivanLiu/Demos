@@ -7,6 +7,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,8 @@ import android.util.Log;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mLineChart = findViewById(R.id.line_chart);
+        mLineChart.initCustomLineChart(Collections.singletonList(0), Collections.singletonList(Color.RED), 14);
 //        LineChartUtils.initLineChart(mLineChart, LineChartUtils.getMonthValueForMatter("2020-12"));
         mLineChart.getXAxis().setAxisMinimum(0);
         mLineChart.getXAxis().setAxisMaximum(50);
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         entries.add(entry3);
         entries.add(entry5);
         entries.add(entry6);
-        LineDataSet lineDataSet = new LineDataSet(entries, "");
+        LineDataSet lineDataSet = new LineDataSet(entries, "心率");
         LineChartUtils.initHeartRateLineDataSet(lineDataSet);
         mLineChart.setData(new LineData(lineDataSet));
 

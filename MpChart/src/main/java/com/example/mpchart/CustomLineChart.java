@@ -7,7 +7,13 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
+import java.util.List;
+
 public class CustomLineChart extends LineChart {
+    private List<Integer> lineDataIndexs;
+    private List<Integer> colors;
+
+
     public CustomLineChart(Context context) {
         super(context);
     }
@@ -20,15 +26,23 @@ public class CustomLineChart extends LineChart {
         super(context, attrs, defStyle);
     }
 
+    public void initCustomLineChart(List<Integer> lineDataIndexs, List<Integer> colors, int textSize) {
+        this.lineDataIndexs = lineDataIndexs;
+        this.colors = colors;
+        customLineChartRenderer.setDrawText(lineDataIndexs, colors, textSize);
+    }
+
+    private CustomLineChartRenderer customLineChartRenderer;
+
     @Override
     protected void init() {
         super.init();
 
-        //获取屏幕宽度,因为默认是向右延伸显示数字的(如图1),当最值在屏幕右端,屏幕不够显示时要向左延伸(如图2)
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics metrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(metrics);
 
-        mRenderer = new CustomLineChartRenderer(this, mAnimator, mViewPortHandler);
+        customLineChartRenderer = new CustomLineChartRenderer(this, mAnimator, mViewPortHandler);
+        setRenderer(customLineChartRenderer);
     }
 }
