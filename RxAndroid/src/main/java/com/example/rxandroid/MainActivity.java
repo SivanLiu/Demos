@@ -1,26 +1,30 @@
 package com.example.rxandroid;
 
+import com.jakewharton.rxbinding4.view.RxView;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.jakewharton.rxbinding4.view.RxView;
-
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
-import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import kotlin.Unit;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -50,6 +54,28 @@ public class MainActivity extends AppCompatActivity {
 //                Log.e("sss", "single end " + s);
 //            }
 //        });
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.apiopen.top")
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                .build();
+
+        retrofit.create(ApiService.class).getJoke(1, 2, "video")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ResultBean<List<JokenBean>>>() {
+                    @Override
+                    public void accept(ResultBean<List<JokenBean>> objectResultBean) throws Throwable {
+                        Log.e("ssss", objectResultBean.toString());
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Throwable {
+                        Log.e("ssss", throwable.toString());
+                    }
+                });
+
 
         final Disposable[] disposable = {null};
 
