@@ -49,11 +49,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        tableLayout.setupWithViewPager(viewPager);
         tableLayout.getTabAt(0).setText("AFragment");
         tableLayout.getTabAt(1).setText("BFragment");
         tableLayout.getTabAt(2).setText("CFragment");
         tableLayout.getTabAt(3).setText("DFragment");
-        tableLayout.setupWithViewPager(viewPager);
+        viewPager.setOffscreenPageLimit(4);
 
         tableLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
