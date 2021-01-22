@@ -57,6 +57,9 @@ public class CustomLineChartRenderer extends LineChartRenderer {
             }
             Transformer transformer = mChart.getTransformer(lineDataSet.getAxisDependency());
             List<Entry> entries = lineDataSet.getValues();
+            if (null == entries || entries.isEmpty()) {
+                return;
+            }
             Entry minEntry = Collections.max(entries, new Comparator<Entry>() {
                 @Override
                 public int compare(Entry entry, Entry t1) {

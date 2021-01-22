@@ -10,12 +10,12 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -49,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
         Entry entry3 = new Entry(3, 60, 90);
         Entry entry5 = new Entry(4, 60, 90);
         Entry entry6 = new Entry(5, 60, 90);
-        entries.add(entry0);
-//        entries.add(entry);
-        entries.add(entry2);
-        entries.add(entry3);
-        entries.add(entry5);
-        entries.add(entry6);
+//        entries.add(entry0);
+////        entries.add(entry);
+//        entries.add(entry2);
+//        entries.add(entry3);
+//        entries.add(entry5);
+//        entries.add(entry6);
         LineDataSet lineDataSet = new LineDataSet(entries, "心率");
         LineChartUtils.initHeartRateLineDataSet(lineDataSet);
         mLineChart.setData(new LineData(lineDataSet));
@@ -74,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
         });
 //        mLineChart.clearValues();
         mLineChart.invalidate();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mLineChart.clearValues();
+                mLineChart.invalidate();
+            }
+        }, 5000);
     }
 
     private static LineData getLineHeartRateData(List<LineBean> heartRateBeans, int color, Drawable icon) {
