@@ -1,5 +1,6 @@
 package com.example.mpchart;
 
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -7,16 +8,13 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -24,37 +22,37 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private CustomLineChart mLineChart;
+    //    private CustomLineChart mLineChart;
+    private LineChart mLineChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mLineChart = findViewById(R.id.line_chart);
-        mLineChart.initCustomLineChart(Collections.singletonList(0), Collections.singletonList(Color.RED), 14);
+//        mLineChart.initCustomLineChart(Collections.singletonList(0), Collections.singletonList(Color.RED), 20);
 //        LineChartUtils.initLineChart(mLineChart, LineChartUtils.getMonthValueForMatter("2020-12"));
-        mLineChart.getXAxis().setAxisMinimum(0);
-        mLineChart.getXAxis().setAxisMaximum(50);
+        mLineChart.getXAxis().setAxisMinimum(0.9f);
+        mLineChart.getXAxis().setLabelCount(8);
+//        mLineChart.getXAxis().setAxisMaximum(6 + 0.1f);
 //        mLineChart.getXAxis().setLabelCount(11);
-        mLineChart.getXAxis().setGranularity(1);
-        mLineChart.getXAxis().setGranularityEnabled(true);
         LineChartUtils.initLineChart(mLineChart, LineChartUtils.getWeekValueForMatter());
         mLineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
 //        mLineChart.getXAxis().setLabelRotationAngle(75);
 //        LineData heartRateData = getLineHeartRateData(preProcessHeartRateData(getData()), Color.parseColor("#18B4FF"), ContextCompat.getDrawable(this, R.drawable.line_chart_circle));
         List<Entry> entries = new ArrayList<>();
         Entry entry0 = new Entry(0, 90, 90);
-//        Entry entry = new Entry(1, 30, 30);
-        Entry entry2 = new Entry(2, 60, 70);
-        Entry entry3 = new Entry(3, 60, 90);
-        Entry entry5 = new Entry(4, 60, 90);
-        Entry entry6 = new Entry(5, 60, 90);
-//        entries.add(entry0);
-////        entries.add(entry);
-//        entries.add(entry2);
-//        entries.add(entry3);
-//        entries.add(entry5);
-//        entries.add(entry6);
+        Entry entry = new Entry(0.5f, 30, 30);
+        Entry entry2 = new Entry(1, 60, 70);
+        Entry entry3 = new Entry(2, 60, 90);
+        Entry entry5 = new Entry(3, 60, 90);
+        Entry entry6 = new Entry(6, 60, 90);
+        entries.add(entry0);
+        entries.add(entry);
+        entries.add(entry2);
+        entries.add(entry3);
+        entries.add(entry5);
+        entries.add(entry6);
         LineDataSet lineDataSet = new LineDataSet(entries, "心率");
         LineChartUtils.initHeartRateLineDataSet(lineDataSet);
         mLineChart.setData(new LineData(lineDataSet));
@@ -75,13 +73,13 @@ public class MainActivity extends AppCompatActivity {
 //        mLineChart.clearValues();
         mLineChart.invalidate();
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mLineChart.clearValues();
-                mLineChart.invalidate();
-            }
-        }, 5000);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                mLineChart.clearValues();
+//                mLineChart.invalidate();
+//            }
+//        }, 5000);
     }
 
     private static LineData getLineHeartRateData(List<LineBean> heartRateBeans, int color, Drawable icon) {

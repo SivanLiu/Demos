@@ -106,6 +106,7 @@ public class CustomLineChartRenderer extends LineChartRenderer {
         textPaint.getTextBounds(String.valueOf((int) entry.getY()), 0, String.valueOf((int) entry.getY()).length(), rectTextBounds);
         int textWidth = (rectTextBounds.right - rectTextBounds.left);
         int textHeight = (rectTextBounds.bottom - rectTextBounds.top);
+        Log.e("sss", "textWidth = " + textWidth + " textHeight = " + textHeight);
         float y = isMax ? (float) (mPointD.y - textHeight + 5) : (float) (mPointD.y + textHeight + 5);
         canvas.drawText(String.valueOf((int) entry.getY()), (float) (mPointD.x - textWidth / 2), y, textPaint);
     }

@@ -42,7 +42,8 @@ public class CustomLineChart extends LineChart {
         DisplayMetrics metrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(metrics);
 
-        customLineChartRenderer = new CustomLineChartRenderer(this, mAnimator, mViewPortHandler);
-        setRenderer(customLineChartRenderer);
+        return;
+//        customLineChartRenderer = new CustomLineChartRenderer(this, mAnimator, mViewPortHandler);
+//        setRenderer(customLineChartRenderer);
     }
 }

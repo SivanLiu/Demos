@@ -8,6 +8,7 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.text.ParseException;
@@ -16,7 +17,7 @@ import java.util.Date;
 
 public class LineChartUtils {
 
-    public static final String[] weekDays = {"周一", "周二", "周三", "周四", "周五", "周六", "周日"};
+    public static final String[] weekDays = {"","周一", "周二", "周三", "周四", "周五", "周六", "周日"};
 
     public static void initLineChart(LineChart lineChart, ValueFormatter valueFormatter) {
         lineChart.setDescription(null);
@@ -32,7 +33,7 @@ public class LineChartUtils {
         lineChart.getXAxis().setTextColor(Color.parseColor("#AFAFAF"));
         lineChart.getXAxis().setAxisLineWidth(2);
         lineChart.getXAxis().setAxisLineColor(Color.parseColor("#1A393939"));
-//        lineChart.getXAxis().setGranularity(1f);
+        lineChart.getXAxis().setGranularity(0.1f);
 //        lineChart.setExtraOffsets(0, 5, 0, 10);
         lineChart.setExtraBottomOffset(5);
 //        lineChart.getAxisLeft().setSpaceBottom(0);
@@ -46,6 +47,7 @@ public class LineChartUtils {
         lineChart.getAxisLeft().setDrawLabels(false);
         lineChart.getAxisLeft().setAxisLineColor(Color.TRANSPARENT);
 //        lineChart.getXAxis().setValueFormatter(valueFormatter);
+        lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(weekDays));
     }
 
     public static void initLineChart(LineChart lineChart) {
