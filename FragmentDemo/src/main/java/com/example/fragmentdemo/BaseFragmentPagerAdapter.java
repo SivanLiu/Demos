@@ -4,26 +4,28 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-public class BaseFragmentPagerAdapter extends FragmentPagerAdapter {
+public class BaseFragmentPagerAdapter extends FragmentStateAdapter {
 
     private List<Fragment> fragmentList;
 
-    public BaseFragmentPagerAdapter(FragmentManager fm, List<Fragment> fragmentList) {
-        super(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+    public BaseFragmentPagerAdapter(FragmentActivity fm, List<Fragment> fragmentList) {
+        super(fm);
         this.fragmentList = fragmentList;
     }
 
     @NonNull
     @Override
-    public Fragment getItem(int position) {
+    public Fragment createFragment(int position) {
         return fragmentList.get(position);
     }
 
     @Override
-    public int getCount() {
+    public int getItemCount() {
         return fragmentList.size();
     }
 }
