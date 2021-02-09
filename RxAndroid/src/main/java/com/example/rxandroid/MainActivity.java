@@ -1,5 +1,7 @@
 package com.example.rxandroid;
 
+import com.jakewharton.rxbinding4.view.RxView;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -7,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -19,6 +22,7 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import kotlin.Unit;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -36,12 +40,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        btLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.e(TAG, "onClick: ");
-            }
-        });
+//        btLogin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.e(TAG, "onClick: ");
+//            }
+//        });
 
 
         Log.e("sss", "single start");
@@ -78,28 +82,28 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //
 //
-//        RxView.clicks(btLogin).throttleFirst(5, TimeUnit.SECONDS)
-//                .subscribe(new Observer<Unit>() {
-//                    @Override
-//                    public void onSubscribe(@NonNull Disposable d) {
-//                        Log.e(TAG, "onSubscribe: ");
-//                    }
-//
-//                    @Override
-//                    public void onNext(@NonNull Unit unit) {
-//                        Log.e(TAG, "onNext: ");
-//                    }
-//
-//                    @Override
-//                    public void onError(@NonNull Throwable e) {
-//                        Log.e(TAG, "onError: ");
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//                        Log.e(TAG, "onComplete: ");
-//                    }
-//                });
+        RxView.clicks(btLogin).throttleFirst(2000, TimeUnit.MILLISECONDS)
+                .subscribe(new Observer<Unit>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        Log.e(TAG, "onSubscribe: ");
+                    }
+
+                    @Override
+                    public void onNext(@NonNull Unit timeUnit) {
+                        Log.e(TAG, "onNext: ");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.e(TAG, "onError: ");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.e(TAG, "onComplete: ");
+                    }
+                });
 
         Observable.mergeDelayError(getQQ().toObservable().doOnError(new Consumer<Throwable>() {
             @Override

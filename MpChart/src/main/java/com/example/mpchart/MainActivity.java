@@ -8,6 +8,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.util.Log;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -22,15 +24,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    //    private CustomLineChart mLineChart;
-    private LineChart mLineChart;
+    private CustomLineChart mLineChart;
+//    private LineChart mLineChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mLineChart = findViewById(R.id.line_chart);
-//        mLineChart.initCustomLineChart(Collections.singletonList(0), Collections.singletonList(Color.RED), 20);
+        mLineChart.initCustomLineChart(Collections.singletonList(0), Collections.singletonList(Color.RED), 20);
 //        LineChartUtils.initLineChart(mLineChart, LineChartUtils.getMonthValueForMatter("2020-12"));
         mLineChart.getXAxis().setAxisMinimum(0.9f);
         mLineChart.getXAxis().setLabelCount(8);

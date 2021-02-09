@@ -103,10 +103,13 @@ public class CustomLineChartRenderer extends LineChartRenderer {
 
     private void drawText(Transformer transformer, Canvas canvas, Rect rectTextBounds, Entry entry, boolean isMax) {
         MPPointD mPointD = transformer.getPixelForValues(entry.getX(), entry.getY());
-        textPaint.getTextBounds(String.valueOf((int) entry.getY()), 0, String.valueOf((int) entry.getY()).length(), rectTextBounds);
+        String value = ".52\n889";
+//        textPaint.getTextBounds(value, 0, value.length(), rectTextBounds);
+        float measureText = textPaint.measureText(value, 0, value.length());
+        float height =textPaint.getFontMetrics().top - textPaint.getFontMetrics().bottom;
         int textWidth = (rectTextBounds.right - rectTextBounds.left);
         int textHeight = (rectTextBounds.bottom - rectTextBounds.top);
-        Log.e("sss", "textWidth = " + textWidth + " textHeight = " + textHeight);
+        Log.e("sss", "textWidth = " + textWidth + " textHeight = " + textHeight + " lenght = " + measureText + " height = "+height);
         float y = isMax ? (float) (mPointD.y - textHeight + 5) : (float) (mPointD.y + textHeight + 5);
         canvas.drawText(String.valueOf((int) entry.getY()), (float) (mPointD.x - textWidth / 2), y, textPaint);
     }
