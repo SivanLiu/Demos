@@ -1,11 +1,31 @@
 package com.example.kotlindemo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
+import com.example.kotlindemo.topLevelFunction
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+
+class MainActivity: AppCompatActivity(), Impl {
+    lateinit var tvText: TextView;
+    val test: String = "texttest+"
+    var myName:String?="rengwuxian"
+    var number:Int = 1
+    var c:Char= 'c'
+    var b:Boolean = true
+    var array:IntArray = intArrayOf(1, 2)
+    var str:String = "String"
+    var a:Int = 1;
+    var bb:Int?= 2
+    var list:List<Int>  = listOf(1, 2)
+
+    final override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        tvText = findViewById(R.id.tvtext);
+        tvText.setText(test)
+
     }
+
 }
