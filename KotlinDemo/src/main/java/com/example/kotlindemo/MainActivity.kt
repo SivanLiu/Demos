@@ -1,6 +1,7 @@
 package com.example.kotlindemo
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
@@ -40,6 +41,13 @@ class MainActivity : AppCompatActivity(), Impl {
             val sequence = generateSequence(0) { it + 1 }
         }
     }
+
+    var textViews:List<out TextView>
+    var textViews2:List<in TextView>
+
+    val producer:Producer<out TextView> = Producer<Button>()
+
+
 
     final override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
