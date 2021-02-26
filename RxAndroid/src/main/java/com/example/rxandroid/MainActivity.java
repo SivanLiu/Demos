@@ -4,7 +4,6 @@ import com.jakewharton.rxbinding4.view.RxView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -82,28 +81,37 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //
 //
-        RxView.clicks(btLogin).throttleFirst(2000, TimeUnit.MILLISECONDS)
-                .subscribe(new Observer<Unit>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-                        Log.e(TAG, "onSubscribe: ");
-                    }
 
+        RxView.clicks(btLogin).throttleFirst(5, TimeUnit.SECONDS)
+                .subscribe(new Consumer<Unit>() {
                     @Override
-                    public void onNext(@NonNull Unit timeUnit) {
-                        Log.e(TAG, "onNext: ");
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        Log.e(TAG, "onError: ");
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Log.e(TAG, "onComplete: ");
+                    public void accept(Unit unit) throws Throwable {
+                        Log.e("sss", "click.....");
                     }
                 });
+
+//        RxView.clicks(btLogin).throttleFirst(2000, TimeUnit.MILLISECONDS)
+//                .subscribe(new Observer<Unit>() {
+//                    @Override
+//                    public void onSubscribe(@NonNull Disposable d) {
+//                        Log.e(TAG, "onSubscribe: ");
+//                    }
+//
+//                    @Override
+//                    public void onNext(@NonNull Unit timeUnit) {
+//                        Log.e(TAG, "onNext: ");
+//                    }
+//
+//                    @Override
+//                    public void onError(@NonNull Throwable e) {
+//                        Log.e(TAG, "onError: ");
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        Log.e(TAG, "onComplete: ");
+//                    }
+//                });
 
         Observable.mergeDelayError(getQQ().toObservable().doOnError(new Consumer<Throwable>() {
             @Override
@@ -139,22 +147,6 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("sss onComplete", "onComplete");
                     }
                 });
-//                .subscribe(new Consumer<Object>() {
-//                    @Override
-//                    public void accept(Object o) throws Throwable {
-//                        Log.e("sss accept", o.toString());
-//                    }
-//                }, new Consumer<Throwable>() {
-//                    @Override
-//                    public void accept(Throwable throwable) throws Throwable {
-//                        Log.e("sss throwable", throwable.toString());
-//                    }
-//                }, new Action() {
-//                    @Override
-//                    public void run() throws Throwable {
-//                        Log.e("sss", "onComplete run...");
-//                    }
-//                });
     }
 
     private Single<ResultBean<List<JokenBean>>> getJoke() {
