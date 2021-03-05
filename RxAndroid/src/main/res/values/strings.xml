@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RxAndroid</string>
+    <string name="crash">RxAndroid crash ......</string>
 </resources>

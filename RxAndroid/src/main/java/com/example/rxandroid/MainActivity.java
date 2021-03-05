@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
 //        btLogin.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -147,6 +148,9 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("sss onComplete", "onComplete");
                     }
                 });
+
+        throw  new NullPointerException("ggggg");
+
     }
 
     private Single<ResultBean<List<JokenBean>>> getJoke() {
