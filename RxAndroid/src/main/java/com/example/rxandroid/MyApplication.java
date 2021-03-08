@@ -2,14 +2,14 @@ package com.example.rxandroid;
 
 import org.acra.ACRA;
 import org.acra.annotation.AcraCore;
-import org.acra.annotation.AcraDialog;
+import org.acra.config.ACRAConfigurationException;
 import org.acra.config.CoreConfigurationBuilder;
 import org.acra.data.StringFormat;
 import org.acra.file.Directory;
 
 import android.app.Application;
 import android.content.Context;
-@AcraDialog(resText = R.string.crash, resCommentPrompt =R.string.crash)
+
 @AcraCore(buildConfigClass = BuildConfig.class, reportSenderFactoryClasses = MyReportSenderFactory.class)
 public class MyApplication extends Application {
 
@@ -36,7 +36,7 @@ public class MyApplication extends Application {
 //                .setEnabled(true);
 //        builder.getPluginConfigurationBuilder(LimiterConfigurationBuilder.class)
 //                .setEnabled(true);
-        ACRA.init(this, builder);
+            ACRA.init(this, builder);
     }
 
     @Override
