@@ -1,3 +1,4 @@
+include ':PMDemo'
 include ':WyDemo'
 include ':MpChart'
 include ':Spinner'

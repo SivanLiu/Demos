@@ -42,11 +42,10 @@ class MainActivity : AppCompatActivity(), Impl {
         }
     }
 
-    var textViews:List<out TextView>
-    var textViews2:List<in TextView>
+    lateinit var textViews: List<out TextView>
+//    lateinit var textViews3: List<in TextView>
 
-    val producer:Producer<out TextView> = Producer<Button>()
-
+    val producer: Producer<out TextView> = Producer<Button>()
 
 
     final override fun onCreate(savedInstanceState: Bundle?) {
