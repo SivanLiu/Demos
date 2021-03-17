@@ -1,3 +1,4 @@
+include ':vlcdemo'
 include ':PMDemo'
 include ':WyDemo'
 include ':MpChart'
