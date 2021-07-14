@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             public void surfaceCreated(@NonNull SurfaceHolder holder) {
                 Log.e(TAG, "surfaceCreated "+holder.getSurface());
                 geneROVPlayer = new GeneROVPlayer(holder.getSurface());
-                geneROVPlayer.setPlayUrl("rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov");
+                geneROVPlayer.setPlayUrl("rtsp://192.168.2.5:554/user=admin&password=123456&id=1&type=0");
                 geneROVPlayer.startPlay();
             }
 
